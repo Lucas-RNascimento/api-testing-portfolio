@@ -105,7 +105,8 @@ npm install -g newman
 
 Executar a coleção:
 ```bash
-newman run GoRest_API_Test.postman_collection.json -e GoRest_Env.postman_environment.json -r cli,html
+newman run Users.postman_collection.json -e 
+QA_env_gorest_api.postman_environment.json -r cli,html
 ```
 
 Um relatório HTML será gerado (exemplo: `newman-report.html`), podendo ser aberto no navegador.
@@ -146,10 +147,11 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 - Logs de requisição e resposta.
 
 Exemplo de relatório:  
-📁 `./report.html`
+📁 `./newman/newman-report.html`
 
-*(Inclua um print real do relatório ou da aba "Runner" do Postman para enriquecer o portfólio)*
-
+*![Newman CLI](./gorest_api/images/newman-cli.png)*
+*![Relatório Newman](./gorest_api/images/relatorio.png)*
+*![Runner Postman](./gorest_api/images/runner-postman.png)*
 ---
 
 ## 📈 Conclusões
@@ -167,6 +169,6 @@ Este projeto demonstra a aplicação prática  de **API Testing com postman**:
 
 **Lucas Ramalho do Nascimento**  
 Analista de QA • Testes de API • Automação • Qualidade de Software  
-📧 [lucasramalho.n@outlook.com]  
-🌐 [linkedin.com/in/lucasramalho]  
-💻 [github.com/Lucas-RNascimento]
+📧 [lucasramalho.n@outlook.com](mailto:lucasramalho.n@outlook.com)  
+🌐 [linkedin.com/in/lucasramalho](https://www.linkedin.com/in/lucasramalhon/)  
+💻 [github.com/Lucas-RNascimento](https://github.com/Lucas-RNascimento)
