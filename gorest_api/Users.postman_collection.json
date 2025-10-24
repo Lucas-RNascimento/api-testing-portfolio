@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "5b917076-001f-4723-828b-a993f1f050ea",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49417217",
+		"_collection_link": "https://lucasramalho-nasci-9616478.postman.co/workspace/gorest_api~f82df942-a3b7-4c3c-bbba-88275dc56ce8/collection/49417217-5b917076-001f-4723-828b-a993f1f050ea?action=share&source=collection_link&creator=49417217"
+	},
+	"item": [
+		{
+			"name": "TC01 - List users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 200\r",
+							"pm.test(\"TC01 - List users – Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"\r",
+							"\r",
+							"\r",
+							"// Converte a resposta em JSON\r",
+							"let response = pm.response.json();\r",
+							"\r",
+							"// Verifica se a resposta é um array com usuários\r",
+							"if (Array.isArray(response) && response.length > 0) {\r",
+							"    // Pega um usuário aleatório da lista\r",
+							"    let randomUser = response[Math.floor(Math.random() * response.length)];\r",
+							"    \r",
+							"    // Salva o ID do usuário no ambiente\r",
+							"    pm.environment.set(\"userId\", randomUser.id);\r",
+							"    \r",
+							"    console.log(\"UserId salvo no ambiente:\", randomUser.id);\r",
+							"} else {\r",
+							"    console.log(\"Nenhum usuário válido retornado na resposta.\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC02 - Get user by valid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 200\r",
+							"pm.test(\"TC02 - Get user by ID – Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"\r",
+							"\r",
+							"// Valida os campos do response\r",
+							"pm.test(\"TC02 - Validate mandatory fields in user response\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    \r",
+							"    // Verifica se é um objeto\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    \r",
+							"    // Verifica campos obrigatórios\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"    pm.expect(jsonData).to.have.property(\"email\");\r",
+							"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+							"    pm.expect(jsonData).to.have.property(\"status\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC04 - Create a valid user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC04 - Create a valid user - Status code is 201\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC04 - Response data matches request\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"  var requestBody = JSON.parse(pm.request.body.raw);\r",
+							"  pm.expect(jsonData.name).to.eql(requestBody.name);\r",
+							"  pm.expect(jsonData.email).to.eql(requestBody.email);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var newUserId = jsonData.id;  // ID do usuário criado no JSON de resposta\r",
+							"pm.environment.set(\"userId\", newUserId);\r",
+							"console.log(\"Novo UserId salvo no ambiente:\", newUserId)\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lucas Simulado\",\r\n    \"email\": \"lucas.simulado123@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC05 - Create user with duplicate email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 422\r",
+							"pm.test(\"TC05 – Create user with duplicate email – Status code is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							"\r",
+							"// Validar a mensagem de erro\r",
+							"pm.test(\"TC05 – Response body contains error message\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"    pm.expect(jsonData[0]).to.have.property(\"field\", \"email\");\r",
+							"    pm.expect(jsonData[0]).to.have.property(\"message\");\r",
+							"    pm.expect(jsonData[0].message.toLowerCase()).to.include(\"has already been taken\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lucas Simulado Junior\",\r\n    \"email\": \"lucas.simulado123@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC06 - Update existing user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 200\r",
+							"pm.test(\"TC06 – Update existing user successfully – Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lucas Atualizado\",\r\n    \"email\": \"lucas.simulado123atualizado@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC07 - Delete valid user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 204 (No Content) após deletar o usuário\r",
+							"pm.test(\"TC07 – Delete valid user – Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"// Opcional: pode validar que o corpo da resposta está vazio\r",
+							"pm.test(\"TC07 – Response body is empty\", function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC03 - Get user by Invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 404\r",
+							"pm.test(\"TC03 – Get user by invalid ID – Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"// Validar a mensagem de erro\r",
+							"pm.test(\"TC03 – Response body contains error message\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"message\");\r",
+							"    pm.expect(jsonData.message.toLowerCase()).to.include(\"not found\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userIdInvalid}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userIdInvalid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC08 - Delete invalid user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Valida status code 404 para usuário inválido ou inexistente\r",
+							"pm.test(\"TC08 – Delete invalid user – Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"// Valida a mensagem de erro na resposta\r",
+							"pm.test(\"TC08 – Response body contains error message\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"message\");\r",
+							"    pm.expect(jsonData.message.toLowerCase()).to.include(\"not found\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userIdInvalid}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userIdInvalid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
