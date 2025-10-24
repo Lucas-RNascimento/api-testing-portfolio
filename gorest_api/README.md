@@ -151,7 +151,9 @@ Exemplo de relatório:
 
 ![Newman CLI](images/newman-cli.png)
 
+
 ![Relatório Newman](images/relatorio.png)
+
 
 ![Runner Postman](images/runner-postman.png)
 ---
