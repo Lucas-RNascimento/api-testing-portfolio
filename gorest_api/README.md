@@ -78,11 +78,11 @@ No Postman, defina a variável de ambiente:
 ```
 gorest_api/
 │
-├── GoRest_API_Test.postman_collection.json     # Coleção de requisições
-├── GoRest_Env.postman_environment.json         # Variáveis de ambiente
-├── report.html                                 # Relatório gerado via Newman
-├── README.md                                   # Documentação do projeto
-└── defects/                                    # Prints e logs (opcional)
+├── Users.postman_collection.json                      # Coleção de requisições
+├── QA_env_gorest_api.postman_environment.json         # Variáveis de ambiente
+├── newman/report.html                                 # Relatório gerado via Newman
+├── README.md                                          # Documentação do projeto
+└── defects/                                           # Prints e logs (opcional)
 ```
 
 ---
