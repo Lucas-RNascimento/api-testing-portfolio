@@ -149,17 +149,17 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 ---
 
 ### Exemplo de relatório:  
-![Relatorio Newman](images/relatorio.png)
+![Relatorio Newman](./images/relatorio.png)
 
 ---
 
 ### Exemplo CLI Newman:
-![Newman CLI](images/newman-cli.png)
+![Newman CLI](./images/newman-cli.png)
 
 ---
 
 ### Exemplo runner postman
-![Runner Postman](images/runner-postman.png)
+![Runner Postman](./images/runner-postman.png)
 
 ---
 ## 📈 Conclusões
