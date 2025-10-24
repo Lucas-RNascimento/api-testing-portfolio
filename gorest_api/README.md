@@ -146,16 +146,16 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 - Tempo de resposta médio;
 - Logs de requisição e resposta.
 
-Exemplo de relatório:  
+### Exemplo de relatório:  
 ![Relatorio Newman](images/relatorio.png)
 
-Exemplo CLI Newman:
+### Exemplo CLI Newman:
 ![Newman CLI](images/newman-cli.png)
 
-Exemplo runner postman
+### Exemplo runner postman
 ![Runner Postman](images/runner-postman.png)
----
 
+---
 ## 📈 Conclusões
 
 Este projeto demonstra a aplicação prática  de **API Testing com postman**:
