@@ -147,14 +147,12 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 - Logs de requisição e resposta.
 
 Exemplo de relatório:  
-📁 `./newman/newman-report.html`
-
-![Newman CLI](images/newman-cli.png)
-
-
 ![Relatorio Newman](images/relatorio.png)
 
+Exemplo CLI Newman:
+![Newman CLI](images/newman-cli.png)
 
+Exemplo runner postman
 ![Runner Postman](images/runner-postman.png)
 ---
 
