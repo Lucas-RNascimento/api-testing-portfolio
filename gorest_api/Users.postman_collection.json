@@ -139,10 +139,12 @@
 							"\r",
 							"\r",
 							"var jsonData = pm.response.json();\r",
-							"var newUserId = jsonData.id;  // ID do usuário criado no JSON de resposta\r",
+							"var newUserId = jsonData.id;\r",
+							"var newUserEmail = jsonData.email  // ID do usuário criado no JSON de resposta\r",
 							"pm.environment.set(\"userId\", newUserId);\r",
+							"pm.environment.set(\"newUserEmail\", newUserEmail);\r",
 							"console.log(\"Novo UserId salvo no ambiente:\", newUserId)\r",
-							"\r",
+							"console.log(\"Novo UserEmail salvo no ambiente:\", newUserEmail)\r",
 							"\r",
 							""
 						],
@@ -157,7 +159,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Lucas Simulado\",\r\n    \"email\": \"lucas.simulado123@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"raw": "{\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -209,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Lucas Simulado Junior\",\r\n    \"email\": \"lucas.simulado123@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Lucas Simulado Junior\",\r\n    \"email\": \"{{newUserEmail}}\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
