@@ -148,8 +148,7 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 ---
 
 ### Exemplo de relatório:  
-![Relatorio Newman]
-
+![Relatorio Newman](images/relatorio.png)
 
 ---
 
