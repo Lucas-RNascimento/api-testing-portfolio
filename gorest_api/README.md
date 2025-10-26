@@ -105,8 +105,7 @@ npm install -g newman
 
 Executar a coleção:
 ```bash
-newman run Users.postman_collection.json -e 
-QA_env_gorest_api.postman_environment.json -r cli,html
+newman run Users.postman_collection.json -e QA_env_gorest_api.postman_environment.json -r cli,html
 ```
 
 Um relatório HTML será gerado (exemplo: `newman-report.html`), podendo ser aberto no navegador.
