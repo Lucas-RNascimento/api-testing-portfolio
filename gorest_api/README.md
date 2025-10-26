@@ -148,18 +148,18 @@ Os resultados foram registrados via **Newman**, gerando um relatório em HTML co
 ---
 
 ### Exemplo de relatório:  
-![Relatorio Newman](https://github.com/Lucas-RNascimento/api-testing-portfolio/blob/main/gorest_api/images/relatorio.png?raw=true)
+![Relatorio Newman]
+
 
 ---
 
 ### Exemplo CLI Newman:
-![Newman CLI](https://github.com/Lucas-RNascimento/api-testing-portfolio/blob/main/gorest_api/images/newman-cli.png?raw=true)
+![Newman CLI](images/newman-cli.png)
 
 ---
 
 ### Exemplo runner postman
-![Runner Postman](https://github.com/Lucas-RNascimento/api-testing-portfolio/blob/main/gorest_api/images/runner-postman.png?raw=true)
-
+![Runner Postman](images/runner-postman.png)
 ---
 ## 📈 Conclusões
 
