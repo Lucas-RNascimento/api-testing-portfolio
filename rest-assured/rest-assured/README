@@ -1,0 +1,120 @@
+
+#  **README — API Automation  (Postman + Insomnia + Rest-Assured)**
+
+---
+
+# **API Automation **
+
+Automação de testes de API utilizando **Postman**, **Insomnia** e **Rest-Assured**, com relatórios em **Allure** e execução via **Maven**.
+
+Este projeto foi estruturado para simular o fluxo real de automação em times de QA, seguindo boas práticas de organização, versionamento e qualidade de código.
+
+---
+
+## 🧩 **Tecnologias Utilizadas**
+
+* **Java 17**
+* **Rest-Assured**
+* **JUnit 5**
+* **Allure Reports**
+* **Maven**
+* **Postman**
+* **Insomnia**
+* **GoRest Public API ([https://gorest.co.in/](https://gorest.co.in/))**
+
+---
+
+## 📁 **Estrutura do Projeto (Rest-Assured)**
+
+```
+rest-assured/
+ ├── src
+ │   ├── main/java/br/com/gorest
+ │   │   ├── config/       → Configurações globais (API, ambiente, Allure)
+ │   │   ├── models/       → Modelos (POJOs)
+ │   │   └── specs/        → RequestSpec & ResponseSpec
+ │   └── test/java/br/com/gorest/tests
+ │       ├── UsersCrudTest        → Testes positivos (CRUD completo)
+ │       └── UsersNegativeTest    → Testes negativos
+ ├── allure-results/      → Resultados do Allure (gerados automaticamente)
+ ├── pom.xml               → Dependências e plugins Maven
+```
+
+---
+
+## 🚀 **Como Executar os Testes**
+
+### 1️⃣ Rodar todos os testes:
+
+```
+mvn clean test
+```
+
+---
+
+### 2️⃣ Gerar e abrir o relatório Allure:
+
+```
+allure serve allure-results
+```
+
+---
+
+## 🧪 **Escopo dos Testes**
+
+### ✔ Testes Positivos (UsersCrudTest)
+
+* Criar usuário
+* Buscar usuário criado
+* Atualizar usuário
+* Excluir usuário
+* Validar exclusão (404)
+
+---
+
+### ✔ Testes Negativos (UsersNegativeTest)
+
+* Criar usuário inválido
+* Atualizar usuário inexistente
+* Consultar usuário inexistente
+* Deletar usuário inexistente
+* Validar mensagens e status code corretamente
+
+---
+
+## 🧱 **Padrões Aplicados**
+
+* Request Specification centralizada
+* Response Specification reutilizável
+* Models (POJOs) para bodies
+* Uso de variável de ambiente para o token (`GOREST_TOKEN`)
+* Testes organizados por suítes e propósito
+* Relatórios Allure **com requisição e resposta anexados**
+
+---
+
+## 🔐 **Configuração do Token**
+
+Crie a variável de ambiente no Windows:
+
+```
+GOREST_TOKEN = seu_token_aqui
+```
+
+---
+
+## 📊 **Relatório Allure (Exemplo)**
+
+
+![allure-report](docs/allure-example.png)
+
+---
+
+## 📌 **Sobre o Projeto**
+
+Este repositório foi desenvolvido para prática avançada de automação de API, simulando o fluxo usado em equipes profissionais:
+
+* Testes funcionais completos
+* Tratamento de erros
+* Estrutura padronizada
+* Observabilidade via Allure
